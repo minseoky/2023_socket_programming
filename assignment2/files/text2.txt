@@ -1,0 +1,4 @@
+hi! this is text2.
+This is text2's 2nd line
+This is text2's 3rd line
+텍스트2에 추가할내용
