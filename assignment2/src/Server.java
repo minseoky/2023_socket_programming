@@ -3,11 +3,18 @@ import java.net.*;
 
 public class Server {
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(2023);
+        // 서버 소켓 생성 및 포트 번호 지정
+        ServerSocket serverSocket = new ServerSocket();
+        serverSocket.setReuseAddress(true);
+        serverSocket.bind(new InetSocketAddress("localhost", 2023));
         System.out.println("서버가 시작되었습니다.");
 
+        // 클라이언트 연결 대기
+        serverSocket.setSoTimeout(10000);
+        System.out.println("클라이언트 연결 대기중...");
         Socket clientSocket = serverSocket.accept();
         System.out.println("클라이언트와 연결되었습니다.");
+
         // 문자열로 받기 위해 BufferedReader
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         // 문자열 보내기 위해 PrintWriter
